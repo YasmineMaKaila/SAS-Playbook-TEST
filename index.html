@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="playbook-build" content="map-stretch-v2">
+<meta name="playbook-build" content="map-satellite-v3">
 <title>SAS Pod Playbook</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2036,7 +2036,11 @@
   function buildGoogleMapsEmbedUrl(prop){
     // prop.streetAddress already stores the complete approved address (street,
     // city, state, zip together) from the spreadsheet's "Full Address" column.
-    return "https://www.google.com/maps?q=" + encodeURIComponent(prop.streetAddress) + "&output=embed";
+    // MAP_VIEW: 'k' = satellite imagery, 'h' = satellite + street/place labels,
+    // 'm' = standard road map. Change this one letter to switch every map.
+    const MAP_VIEW = 'k';
+    return "https://www.google.com/maps?q=" + encodeURIComponent(prop.streetAddress)
+      + "&t=" + MAP_VIEW + "&output=embed";
   }
 
   function destroyPropertyMap(){
